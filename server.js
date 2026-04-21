@@ -17,7 +17,8 @@ app.post('/ziwei', (req, res) => {
       '여': 'female', '여성': 'female', 'female': 'female'
     };
     const iztroGender = genderMap[gender] || 'male';
-    const hourNum = parseInt(birth_hour) || 0;
+    const hour24 = parseInt(birth_hour) || 0;
+const hourNum = Math.floor(((hour24 + 1) % 24) / 2);
     const astrolabe = astro.bySolar(
       birth_date, hourNum, iztroGender, true, 'zh-CN'
     );
